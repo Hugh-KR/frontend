@@ -8,7 +8,7 @@ RUN apk add --no-cache bash curl && \
     nvm install 16 && \
     nvm use 16
 	
-RUN npm install --legacy-peer-deps
+RUN npm install 16
 COPY . .
 EXPOSE 3000
 CMD ["npm", "run", "dev"]
