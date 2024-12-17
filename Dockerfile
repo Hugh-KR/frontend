@@ -1,6 +1,6 @@
 # Build stage
 FROM node:20-alpine AS development
-WORKDIR /usr/src/app
+WORKDIR /app
 COPY krampoline/ ./
 	
 RUN npm install -g npm@11.0.0
