@@ -1,6 +1,6 @@
 # 빌드 단계
 FROM node:20-alpine AS builder
-WORKDIR /usr/src/app
+WORKDIR /app
 COPY krampoline/ ./
 RUN npm ci
 RUN npm run build
