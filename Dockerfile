@@ -1,9 +1,14 @@
-# 빌드 단계
-FROM node:20-alpine AS builder
+# Build stage
+FROM node:20-alpine AS development
 WORKDIR /app
-COPY krampoline/ ./
-RUN npm ci
-RUN npm run build
-RUN npm install -g serve
+COPY package*.json ./
+RUN apk add --no-cache bash curl && \
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash && \
+    . ~/.nvm/nvm.sh && \
+    nvm install 16 && \
+    nvm use 16
+	
+RUN npm install --legacy-peer-deps
+COPY . .
 EXPOSE 3000
-CMD ["serve", "build"]
+CMD ["npm", "run", "dev"]
